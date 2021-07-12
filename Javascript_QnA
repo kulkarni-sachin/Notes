@@ -1,0 +1,166 @@
+Q. What are function return types in JavaScript?
+A. We can return values as well as functions in javascript.
+  For example: 
+  i) we can return values from the values as follows: 
+    function add(a, b) {
+        return a+ b;
+    }
+  To execute this : 
+  add(2, 2);
+  ii) we can return function itself from another function as follows:
+      function getOperation(operationType, a, b) {
+        switch (operationType) {
+          case ‘add’: 
+            return function add (a, b) {
+            return a+b;
+          }
+          case ‘mul’: 
+            return function multiply (a, b) {
+            return a * b;
+          }
+          case ‘div’: 
+            return function divide (a, b) {
+            return a/b;
+          }
+          case ‘sub’ : 
+            return function subtract (a, b) {
+            return a-b;
+          }	
+        } 
+      }
+  To run the above method:
+  var operation = getOperation(‘add’, 2, 3);  // with this line we get the function add in operation, but we need to execute the function i.e. operation variable act as function                                               // which needs to be executed.
+  operation(); // Here we need not to send the variables as the with the help of closure the add function will be able to access a and b respectively.
+  This shows that the function in javascript can be returned as objects.
+
+Q. What is Lexical Scoping?
+A:  Let’s see following code:
+  function add() {
+    var a = 2;
+    var b = 2;
+    return a+ b;
+  }
+  add();
+  
+Here scope of variable 'a' is limited to inside the function add.
+
+Now,
+  
+  console.log(a);  // this will result in error.
+  function add() {
+    var a = 2;
+    var b = 2;
+    return a+ b;
+  }
+  
+Here, there will be reference error in the console saying the 'a' is not defined. This means that variable 'a' is available only inside the function.
+
+Another example: 
+  function addExtraa5 () {
+      var a = 3;
+      var b = 4;
+      function add () {
+        // a is not defined in this function but still its accessible here.
+        return a+b+5;
+      }
+  } 
+
+The variable 'a' defined in the addExtraa5 function is accessed by inner function add.
+
+So, in JavaScript if the variable present in the function is not available it goes to the parent scope to check if its present and search continues from parent to parent until the window/global scope is reached.
+
+If the variable is not present in any parent or parents parent scope, then it will throw variable not defined error.
+
+The scope of variable is based on the function in which it is declared as all the child function of the same can access that variable.This process is called lexical scoping.
+
+Q. What is Closure? 
+A. Whenever function executes in the JavaScript it forms its own closure variable in the runtime which can be in seen in inspect window’s scope.
+ 
+  function a(x) {
+    return function b(y){
+      return function c(z){
+          debugger;
+          return x * y * z;
+          }
+      }
+  }
+var p = a(4);
+var q  = p(4);
+console.log(q(4));  
+
+If we run the above code once debugger hits in sources tab with inspect window open, 
+we will be able to see the closures formed inside scopes with the function name and those will contain the variables declared inside the functions.
+These are the places where js runtime engine searches, if the requested variable is not present in the function executing.
+
+This process of referencing to the variables present in the function, while executing the child functions is termed as "Closure".
+
+Q.What is Hoisting?
+A. Usually in programming we have two types of operation for the i) declaration ii) assignment
+
+For ex: 
+  a) add();                                          b) function add(a, b) {                                                        }
+  function add(a, b){                                     return a + b;
+    return a + b;                                       }
+  }                                                     add();
+  
+  These both code snippets behave same for the javascript engine.
+  The javascript engine runs through the entire code and reserves memory for each variable and functions :
+  
+  In the above code 'a)' example: Even though add function is called before declaring the function, the execution will happen as expected.
+  
+  Reason:
+  The Javascript engine has two phases while executing the code: 
+  1) Creation Phase    2) Execution Phase
+  - In Creation phase the add function will be declared and placed in the memory.
+    In case of variable it will be declared with 'undefined' value in the memory will be assigned to the same.
+  
+  - In Execution phase the real execution of the called function will happen. 
+    In case of variable assignment of the value to the variable takes place.
+    
+  Variable Example:
+  console.log(a);
+  var a = 'Hello';
+  
+  Here 'undefined' will be printed on the console, as the variable 'a' will be created in the memory but cosole.log will be called before the assignment of the value "Hello" to the variable.
+  So, the process of creation of the memory for the function and variables in creation phase of the exceution will be termed as hoisting.
+  
+  To remember the process all the variables and fuctions declarations will be moved to the top except the assigments and calling functions, this is termed as hoisting.
+  
+  Example to remember: 
+                            
+  var a = "Hello";
+  var b = "World";
+  
+  will be converted to 
+  var a;
+  var b;
+  
+  a = "Hello";
+  b = "World";
+  
+  So, the declaration of all the variables move to the top with 'undefined' as value of the variable.
+  
+  NOTE: For the function the execution and logic will be added to in the memory at the declaration itself. 
+  Only execution takes place in execution phase.
+                  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+
+
+ 
+
