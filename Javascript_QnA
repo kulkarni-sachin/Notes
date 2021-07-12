@@ -1,7 +1,7 @@
 Q. What are function return types in JavaScript?
 A. We can return values as well as functions in javascript.
   For example: 
-  i) we can return values from the values as follows: 
+  i) we can return values from the function as follows: 
     function add(a, b) {
         return a+ b;
     }
