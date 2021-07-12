@@ -143,7 +143,39 @@ For ex:
   NOTE: For the function the execution and logic will be added to in the memory at the declaration itself. 
   Only execution takes place in execution phase.
                   
-  
+Q. What are IIFE ?
+A. IIFE stands for Immediately Invoked Function Expression which means that the function will be executed as soon as they are declared.
+   Also, called Self executing anonymous function.
+
+Ex : (function f1(){
+        let x = "Hello";
+        console.log(x);
+     })();
+    
+    The function f1 is wrapped inside the round braces and executed with () at the declaration itself.
+    This is equivalent to below code in terms of logic:
+    function f2(){
+      let x = "Hello";
+      console.log(x);
+    }
+    f2();
+    
+    The advantage of IIFE is we cannot access or adultrate the variable declared inside the function, for ex: 
+    in IIFE case : 
+    f1.x = "New Value"; // this will throw error. f2 is not defined. because the f2 scope will be inside the anonymous function only. 
+                        // ie f2 function will not be able to access outside the anonymous function
+    but in other case :
+    f2.x = "New Value"; // this will update the value in the function f2 ie. the values will be adultrated from the other places in the scripts. 
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
   
   
   
